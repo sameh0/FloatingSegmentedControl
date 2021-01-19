@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ItemView: View {
     var text: String
-    
+    var font:Font
+
     var body: some View {
         Text(text)
-            .font(.system(size: 15))
-            .fontWeight(.semibold)
+            .font(font)
             .lineLimit(1)
             .minimumScaleFactor(0.95)
             .frame(height: 30)

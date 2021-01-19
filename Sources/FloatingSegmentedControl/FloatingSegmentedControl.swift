@@ -18,13 +18,14 @@ public struct FloatingSegmentedControlView: View {
     var allowBlur:Bool
     var items: [String]
     var title: String
+    var itemsFont:Font
     var onSelected: (Int) -> ()
     
     public var body: some View {
         ZStack {
             HStack(alignment: .center, spacing: 7) {
                 ForEach(self.items, id: \.self) { item in
-                    ItemView(text: item)
+                    ItemView(text: item, font: itemsFont)
                         .foregroundColor(self.selectedIndex == self.items.firstIndex(of: item)! ? Color(textColor) : Color(selectedTextColor))
                 }
             }
@@ -50,7 +51,7 @@ public struct FloatingSegmentedControlView: View {
                 
                 HStack(alignment: .center, spacing: 7) {
                     ForEach(self.items, id: \.self) { item in
-                        ItemView(text: item)
+                        ItemView(text: item, font: itemsFont)
                             .foregroundColor(self.selectedIndex == self.items.firstIndex(of: item)! ? Color(selectedTextColor) : Color(textColor))
                             .modifier(WidthUpdater(selectedIndex: self.$selectedIndex, widths: self.$widths, onSelected: self.onSelected, id: self.items.firstIndex(of: item)!))
                             .background(TextGeometryWidth())
@@ -108,7 +109,8 @@ extension FloatingSegmentedControlView {
         selectedTextColor:UIColor = .gray,
         allowBlur:Bool = true,
         backgroundColor:UIColor = .lightGray,
-        textColor:UIColor = .clear
+        textColor:UIColor = .clear,
+        itemsFont:Font = .system(size: 15)
     )
     {
         self.items = items
@@ -119,6 +121,7 @@ extension FloatingSegmentedControlView {
         self.allowBlur = allowBlur
         self.backgroundColor = backgroundColor
         self.textColor = textColor
+        self.itemsFont = itemsFont
     }
 
 }
