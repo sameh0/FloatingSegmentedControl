@@ -83,7 +83,7 @@ public struct FloatingSegmentedControlView: View {
             @unknown default: ()
             }
         }
-        .shadow(radius: 10)
+         
     }
     
     var mainBackgroundView: some View {
